@@ -25,6 +25,9 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/miko-soft/ws-server.git"
+    "url": "git+https://github.com/miko-soft/ws-client-nodejs.git"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
