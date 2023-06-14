@@ -9,7 +9,7 @@ npm install --save @mikosoft/ws-client-nodejs
 ```
 
 ## Website Documentation
-[http://libs.mikosoft.info/ws/client-nodejs](http://libs.mikosoft.info/ws/client-nodejs)
+[http://libs.mikosoft.info/ws-client-nodejs](http://libs.mikosoft.info/ws-client-nodejs)
 
 
 ## Websocket Client Features
