@@ -1,10 +1,10 @@
 /**
  * Connect example.
  */
-const { RWClientNodejs } = require('../index.js');
+const { WsClientNodejs } = require('../index.js');
 
 
-class TestClient extends RWClientNodejs {
+class TestClient extends WsClientNodejs {
   constructor(wcOpts) {
     super(wcOpts);
   }

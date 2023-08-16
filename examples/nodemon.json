@@ -10,7 +10,7 @@
   },
   "watch": [
     "000dev.js",
-    "../../clientNodejs/*",
+    "../../ws-clients/*",
     "../../lib/*"
   ],
   "env": {

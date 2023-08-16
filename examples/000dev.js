@@ -2,10 +2,10 @@
  * Test and develop here !
  */
 const { getMessageSize } = require('@mikosoft/ws-lib');
-const { RWClientNodejs } = require('../index.js');
+const { WsClientNodejs } = require('../index.js');
 
 
-class TestClient extends RWClientNodejs {
+class TestClient extends WsClientNodejs {
 
   constructor(wcOpts) {
     super(wcOpts);

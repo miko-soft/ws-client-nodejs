@@ -9,7 +9,7 @@ npm install --save @mikosoft/ws-client-nodejs
 ```
 
 ## Website Documentation
-[http://libs.mikosoft.info/ws-client-nodejs](http://libs.mikosoft.info/ws-client-nodejs)
+[http://libs.mikosoft.info/websocket/ws-client-nodejs](http://libs.mikosoft.info/websocket/ws-client-nodejs)
 
 
 ## Websocket Client Features
@@ -62,9 +62,9 @@ The 'message-error' event is error in the recived message. In most cases this er
 
 ## Example
 ```javascript
-const { Client13jsonRWS } = require('@mikosoft/ws-client-nodejs');
+const { WsClientNodejs } = require('@mikosoft/ws-client-nodejs');
 
-class TestClient extends Client13jsonRWS {
+class TestClient extends WsClientNodejs {
   constructor(wcOpts) {
     super(wcOpts);
   }

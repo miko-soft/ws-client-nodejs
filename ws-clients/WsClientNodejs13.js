@@ -1,7 +1,7 @@
 /**
  * Websocket Client for NodeJS
  * - websocket version: 13
- * - subprotocol: jsonRWS
+ * - subprotocols: raw, jsonRWS
  */
 const http = require('http');
 const urlNode = require('url');
@@ -14,7 +14,7 @@ const handshake = websocket13.handshake;
 new StringExt();
 
 
-class Client13jsonRWS extends DataParser {
+class WsClientNodejs13 extends DataParser {
 
   /**
    * @param {{wsURL:string, connectTimeout:number, reconnectAttempts:number, reconnectDelay:number, questionTimeout:number, subprotocols:string[], autodelayFactor:number, debug:boolean, debug_DataParser:boolean}} wcOpts - websocket client options
@@ -356,7 +356,7 @@ class Client13jsonRWS extends DataParser {
     }
 
     const msg = { id, from, to, cmd, payload };
-    const msgSTR = jsonRWS.outgoing(msg);
+    const msgSTR = this.subprotocolLib.outgoing(msg);
     const msgBUF = this.outgoing(msgSTR, 1);
     await this.socketWrite(msgBUF);
 
@@ -678,4 +678,4 @@ class Client13jsonRWS extends DataParser {
 
 
 
-module.exports = Client13jsonRWS;
+module.exports = WsClientNodejs13;

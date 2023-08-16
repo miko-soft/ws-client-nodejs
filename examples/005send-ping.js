@@ -2,11 +2,11 @@
  * Ping example. On server side must be wsOpts.debug: true
  * Client is sending ping (opcode 0x9) and the server is responding with pong (opcode 0xA).
  */
-const { RWClientNodejs } = require('../index.js');
+const { WsClientNodejs } = require('../index.js');
 const { helper } = require('@mikosoft/ws-lib');
 
 
-class TestClient extends RWClientNodejs {
+class TestClient extends WsClientNodejs {
   constructor(wcOpts) {
     super(wcOpts);
   }

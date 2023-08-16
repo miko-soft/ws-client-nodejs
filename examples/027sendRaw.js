@@ -7,10 +7,10 @@
  * Open client for listening messages in the another terminal with $node 010onMessage.js
  * IMPORTANT: Set the server's subprotocol to 'raw'
  */
-const { RWClientNodejs } = require('../index.js');
+const { WsClientNodejs } = require('../index.js');
 
 
-class TestClient extends RWClientNodejs {
+class TestClient extends WsClientNodejs {
   constructor(wcOpts) {
     super(wcOpts);
   }

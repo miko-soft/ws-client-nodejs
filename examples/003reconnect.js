@@ -2,10 +2,10 @@
  * The example shows how to activate reconnection after the connection is closed.
  * To test this script first turn off the server and then turn it on. The client should reconnect automatically when server is turned on.
  */
-const { RWClientNodejs } = require('../index.js');
+const { WsClientNodejs } = require('../index.js');
 
 
-class TestClient extends RWClientNodejs {
+class TestClient extends WsClientNodejs {
   constructor(wcOpts) {
     super(wcOpts);
   }

@@ -1,10 +1,10 @@
 /**
  * Set socket nick name on the server side -> socket.extension.nickname
  */
-const { RWClientNodejs } = require('../index.js');
+const { WsClientNodejs } = require('../index.js');
 
 
-class TestClient extends RWClientNodejs {
+class TestClient extends WsClientNodejs {
   constructor(wcOpts) {
     super(wcOpts);
   }

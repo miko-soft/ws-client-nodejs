@@ -3,11 +3,11 @@
  * Send to one client several consecutive messages.
  * Open client listener in another terminal $ node 010onMessage.js
  */
-const { RWClientNodejs, lib } = require('../index.js');
+const { WsClientNodejs, lib } = require('../index.js');
 const { helper } = require('@mikosoft/ws-lib');
 
 
-class TestClient extends RWClientNodejs {
+class TestClient extends WsClientNodejs {
   constructor(wcOpts) {
     super(wcOpts);
   }

@@ -1,10 +1,10 @@
 /**
  * Send route to the server. Integrate regoch-router on the server side and build complex, real-time, websocket API.
  */
-const { RWClientNodejs } = require('../index.js');
+const { WsClientNodejs } = require('../index.js');
 
 
-class TestClient extends RWClientNodejs {
+class TestClient extends WsClientNodejs {
   constructor(wcOpts) {
     super(wcOpts);
   }

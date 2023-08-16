@@ -2,10 +2,10 @@
  * Enter one room.
  * Open 031roomEnter.js in one terminal and then run this script in another terminal.
  */
-const { RWClientNodejs } = require('../index.js');
+const { WsClientNodejs } = require('../index.js');
 
 
-class TestClient extends RWClientNodejs {
+class TestClient extends WsClientNodejs {
   constructor(wcOpts) {
     super(wcOpts);
   }

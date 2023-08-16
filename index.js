@@ -1,5 +1,5 @@
-const RWClientNodejs = require('./clientNodejs/Client13jsonRWS');
+const WsClientNodejs = require('./ws-clients/WsClientNodejs13');
 
 module.exports = {
-  RWClientNodejs
+  WsClientNodejs
 };

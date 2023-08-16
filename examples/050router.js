@@ -2,14 +2,14 @@
  * The example shows how to implement regoch-router on the client side.
  * This script sends the message to the server and server responds with the route command which is used in regoch-router.
  */
-const { RWClientNodejs } = require('../index.js');
+const { WsClientNodejs } = require('../index.js');
 const { helper } = require('@mikosoft/ws-lib');
 
 const Router = require('@mikosoft/router');
 const router = new Router({ debug: false });
 
 
-class TestClient extends RWClientNodejs {
+class TestClient extends WsClientNodejs {
   constructor(wcOpts) {
     super(wcOpts);
   }

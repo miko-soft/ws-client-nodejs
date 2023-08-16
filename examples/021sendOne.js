@@ -2,11 +2,11 @@
  * Send to one client: $ node 021sendOne.js 210727090438377820
  * Open client for listening messages in the another terminal with $ node 010onMessage.js
  */
-const { RWClientNodejs, lib } = require('../index.js');
+const { WsClientNodejs, lib } = require('../index.js');
 const { helper } = require('@mikosoft/ws-lib');
 
 
-class TestClient extends RWClientNodejs {
+class TestClient extends WsClientNodejs {
   constructor(wcOpts) {
     super(wcOpts);
   }

@@ -2,11 +2,11 @@
  * Send message (payload) to all clients except the sender.
  * Open multiple clients for leistening messages in the another terminal with $node 010onMessage.js
  */
-const { RWClientNodejs } = require('../index.js');
+const { WsClientNodejs } = require('../index.js');
 const { helper } = require('@mikosoft/ws-lib');
 
 
-class TestClient extends RWClientNodejs {
+class TestClient extends WsClientNodejs {
   constructor(wcOpts) {
     super(wcOpts);
   }
