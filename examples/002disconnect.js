@@ -1,8 +1,7 @@
 /**
  * Connect and disconnect after delay example.
  */
-const { WsClientNodejs } = require('../index.js');
-const { helper } = require('@mikosoft/ws-lib');
+const { WsClientNodejs, lib } = require('../index.js');
 
 
 
@@ -33,7 +32,7 @@ const main = async () => {
 
   // disconnect from websocket server after 3 seconds
   console.log('Wait for 3 seconds to disconnect...');
-  await helper.sleep(3000);
+  await lib.helper.sleep(3000);
   testClient.disconnect();
 };
 

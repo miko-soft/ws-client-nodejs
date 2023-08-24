@@ -2,9 +2,7 @@
  * Ping example. On server side must be wsOpts.debug: true
  * Client is sending ping (opcode 0x9) and the server is responding with pong (opcode 0xA).
  */
-const { WsClientNodejs } = require('../index.js');
-const { helper } = require('@mikosoft/ws-lib');
-
+const { WsClientNodejs, lib } = require('../index.js');
 
 class TestClient extends WsClientNodejs {
   constructor(wcOpts) {
@@ -31,7 +29,7 @@ const main = async () => {
   await testClient.connect();
 
   console.log('Send 5 pings every 1 second and receive pongs...');
-  await helper.sleep(2000);
+  await lib.helper.sleep(2000);
 
   testClient.on('pong', msgSTR => {
     console.log('received::', msgSTR);

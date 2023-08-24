@@ -2,8 +2,7 @@
  * Send to one or many clients.
  * Open multiple clients for leistening messages in the another terminal with $node 010onMessage.js
  */
-const { WsClientNodejs } = require('../index.js');
-const { helper } = require('@mikosoft/ws-lib');
+const { WsClientNodejs, lib } = require('../index.js');
 
 
 class TestClient extends WsClientNodejs {
@@ -33,7 +32,7 @@ const main = async () => {
   console.log('Message sent to multiple clients.');
   await testClient.send(['20220422141130406426', '20220422140401422390', '20220422141130406246'], 'Some message to multiple clients');
 
-  await helper.sleep(1000);
+  await lib.helper.sleep(1000);
   process.exit();
 };
 

@@ -1,8 +1,7 @@
 /**
  * Test and develop here !
  */
-const { getMessageSize } = require('@mikosoft/ws-lib');
-const { WsClientNodejs } = require('../index.js');
+const { WsClientNodejs, lib } = require('../index.js');
 
 
 class TestClient extends WsClientNodejs {
@@ -54,7 +53,7 @@ class TestClient extends WsClientNodejs {
 
 
     /* how many bytes in the message string (for example A is 1 byte and Č is 2 bytes, so msg.length will not give exact result)*/
-    console.log(`\nSent(${getMessageSize(msg)} bytes): ${msg}`);
+    console.log(`\nSent(${lib.getMessageSize(msg)} bytes): ${msg}`);
 
     await this.sendAll(msg);
   }
@@ -78,7 +77,7 @@ testClient.connect();
 
 
 testClient.on('message', (msg, msgSTR, msgBUF) => {
-  console.log(`Received message (${getMessageSize(msgSTR)} bytes):`, msgSTR);
+  console.log(`Received message (${lib.getMessageSize(msgSTR)} bytes):`, msgSTR);
 });
 
 testClient.on('message-error', err => {
@@ -86,7 +85,7 @@ testClient.on('message-error', err => {
 });
 
 testClient.on('server-error', (msg, msgSTR, msgBUF) => {
-  console.log(`Received server-error (${getMessageSize(msgSTR)} bytes):`, msgSTR);
+  console.log(`Received server-error (${lib.getMessageSize(msgSTR)} bytes):`, msgSTR);
 });
 
 setTimeout(async () => {

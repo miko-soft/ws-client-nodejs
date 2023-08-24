@@ -2,8 +2,7 @@
  * Send message (payload) to all clients except the sender.
  * Open multiple clients for leistening messages in the another terminal with $node 010onMessage.js
  */
-const { WsClientNodejs } = require('../index.js');
-const { helper } = require('@mikosoft/ws-lib');
+const { WsClientNodejs, lib } = require('../index.js');
 
 
 class TestClient extends WsClientNodejs {
@@ -41,7 +40,7 @@ const main = async () => {
   console.log('message broadcasted');
   await testClient.broadcast('Message to all clients except the sender');
 
-  await helper.sleep(1000);
+  await lib.helper.sleep(1000);
   process.exit();
 };
 

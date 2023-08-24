@@ -4,8 +4,6 @@
  * Open client listener in another terminal $ node 010onMessage.js
  */
 const { WsClientNodejs, lib } = require('../index.js');
-const { helper } = require('@mikosoft/ws-lib');
-
 
 class TestClient extends WsClientNodejs {
   constructor(wcOpts) {
@@ -39,7 +37,7 @@ const main = async () => {
 
 
   console.log('All messages sent');
-  await helper.sleep(8000);
+  await lib.helper.sleep(8000);
   process.exit();
 };
 

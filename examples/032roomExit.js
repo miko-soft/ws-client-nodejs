@@ -2,7 +2,6 @@
  * Exit from one room.
  */
 const { WsClientNodejs } = require('../index.js');
-const { helper } = require('@mikosoft/ws-lib');
 
 
 class TestClient extends WsClientNodejs {

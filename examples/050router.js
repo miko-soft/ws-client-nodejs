@@ -2,8 +2,7 @@
  * The example shows how to implement regoch-router on the client side.
  * This script sends the message to the server and server responds with the route command which is used in regoch-router.
  */
-const { WsClientNodejs } = require('../index.js');
-const { helper } = require('@mikosoft/ws-lib');
+const { WsClientNodejs, lib } = require('../index.js');
 
 const Router = require('@mikosoft/router');
 const router = new Router({ debug: false });
@@ -57,7 +56,7 @@ const main = async () => {
 
 
   console.log('sending /send/me/back route...');
-  await helper.sleep(400);
+  await lib.helper.sleep(400);
   await testClient.route('/send/me/back');
 
 };

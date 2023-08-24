@@ -3,7 +3,6 @@
  * Open client for listening messages in the another terminal with $ node 010onMessage.js
  */
 const { WsClientNodejs, lib } = require('../index.js');
-const { helper } = require('@mikosoft/ws-lib');
 
 
 class TestClient extends WsClientNodejs {
@@ -33,7 +32,7 @@ const main = async () => {
   await testClient.sendOne(to, 'A');
 
   console.log('message sent');
-  await helper.sleep(2000);
+  await lib.helper.sleep(2000);
   process.exit();
 };
 
