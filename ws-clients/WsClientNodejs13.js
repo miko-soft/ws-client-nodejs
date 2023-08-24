@@ -444,6 +444,18 @@ class WsClientNodejs13 extends DataParser {
 
 
   /**
+   * Send message (payload) to server only. The message will not be sent to any of the clients.
+   * @param {any} payload - message sent to the clients
+   * @return {object} full websocket message object {id, from, to, cmd, payload}
+   */
+  async sendServer(payload) {
+    const to = '0';
+    const cmd = 'socket/sendserver';
+    return await this.carryOut(to, cmd, payload);
+  }
+
+
+  /**
    * Send raw string message to the server. Server must have 'raw' subprotocol.
    * This method is mainly used for testing purposes.
    * @param {string} msgSTR - any string message
