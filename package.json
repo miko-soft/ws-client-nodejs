@@ -1,6 +1,6 @@
 {
   "name": "@mikosoft/ws-client-nodejs",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "title": "Websocket Client - NodeJS",
   "description": "Websocket client for NodeJS.",
   "author": "Mikosoft",
