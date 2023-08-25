@@ -34,6 +34,7 @@ npm install --save @mikosoft/ws-client-nodejs
 - **broadcast(payload:any)** - send message to all clients except the sender
 - **sendAll(payload:any)** - send message to all clients and the sender
 - **sendRaw(payload:string)** - send raw string message to server for test purposes
+- **sendServer(payload:any)** - send message to server only (no sending to other clients)
 
 - **ping(ms:number, n:number)** - send PING to server n times, every ms miliseconds
 - **pong()** - when PING is received from the server send PONG back.
