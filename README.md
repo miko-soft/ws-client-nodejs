@@ -26,7 +26,7 @@ npm install --save @mikosoft/ws-client-nodejs
 
 
 ## API
-- **connect()** - connect to the websocket server
+- **connect(wsURL)** - connect to the websocket server via websocket URL (wsURL) -- *ws://* or *wss://* protocols
 - **disconnect()** - disconnect from the websocket server
 
 - **sendOne(to:string, payload:any)** - send message to one websocket socket/client (parameter *to* is the socket ID)
@@ -74,7 +74,6 @@ class TestClient extends WsClientNodejs {
 const main = async () => {
   // connect to websocket server
   const wcOpts = {
-    wsURL: 'ws://localhost:3211?authkey=TRTmrt',
     connectTimeout: 8000,
     reconnectAttempts: 6, // try to reconnect n times
     reconnectDelay: 5000, // delay between reconnections
@@ -85,7 +84,7 @@ const main = async () => {
     debug_DataParser: false
   };
   const testClient = new TestClient(wcOpts);
-  const socket = await testClient.connect();
+  const socket = await testClient.connect('ws://localhost:3211?authkey=TRTmrt');
   console.log('---SOCKET---');
   console.log('readyState::', socket.readyState);
   console.log('writable::', socket.writable);
