@@ -17,14 +17,13 @@ new StringExt();
 class WsClientNodejs13 extends DataParser {
 
   /**
-   * @param {{wsURL:string, connectTimeout:number, reconnectAttempts:number, reconnectDelay:number, questionTimeout:number, subprotocols:string[], autodelayFactor:number, debug:boolean, debug_DataParser:boolean}} wcOpts - websocket client options
+   * @param {{connectTimeout:number, reconnectAttempts:number, reconnectDelay:number, questionTimeout:number, subprotocols:string[], autodelayFactor:number, debug:boolean, debug_DataParser:boolean}} wcOpts - websocket client options
    */
   constructor(wcOpts) {
     super(wcOpts.debug_DataParser);
 
     // websocket client default options
     this.wcOpts = wcOpts;
-    if (!wcOpts.wsURL || !/^ws:\/\//.test(wcOpts.wsURL)) { throw new Error('Bad websocket URL'); } // HTTP request timeout i.e. websocket connect timeout (when internet is down or on localhost $ sudo ip link set lo down)
     if (wcOpts.connectTimeout === undefined) { this.wcOpts.connectTimeout = 8000; } // HTTP request timeout i.e. websocket connect timeout (when internet is down or on localhost $ sudo ip link set lo down)
     if (wcOpts.reconnectAttempts === undefined) { this.wcOpts.reconnectAttempts = 6; } // how many times to try to reconnect when connection with the server is lost
     if (wcOpts.reconnectDelay === undefined) { this.wcOpts.reconnectDelay = 5000; } // delay between reconnections, default is 3 seconds
@@ -55,11 +54,14 @@ class WsClientNodejs13 extends DataParser {
   /************* CLIENT CONNECTOR ************/
   /**
    * Connect to the websocket server.
+   * @param {string} wsURL - ws://localhost:3211/something?authkey=TRTmrt or wss://localhost:3211/something?authkey=TRTmrt
    * @returns {Promise<Socket>}
    */
-  connect() {
+  connect(wsURL) {
+    if (!wsURL || !/^wss?:\/\//.test(wsURL)) { throw new Error('Bad websocket URL'); }
+    this.wsURL = wsURL; // used in onEvents()
+
     // http.request() options https://nodejs.org/api/http.html#http_http_request_url_options_callback
-    const wsURL = this.wcOpts.wsURL; // websocket URL: ws://localhost:3211/something?authkey=TRTmrt
     const httpURL = wsURL.replace('wss://', 'https://').replace('ws://', 'http://');
     const urlObj = new urlNode.URL(httpURL);
     const hostname = urlObj.hostname;
@@ -132,7 +134,7 @@ class WsClientNodejs13 extends DataParser {
     const delay = this.wcOpts.reconnectDelay;
     if (this.attempt <= attempts) {
       await helper.sleep(delay);
-      this.connect();
+      this.connect(this.wsURL);
       console.log(`Reconnect attempt #${this.attempt} of ${attempts} in ${delay}ms`.cliBoja('blue', 'bright'));
       this.attempt++;
     }
@@ -205,7 +207,7 @@ class WsClientNodejs13 extends DataParser {
       socket.on('error', (err) => {
         let errMsg = err.stack;
         if (/ECONNREFUSED/.test(err.stack)) {
-          errMsg = `No connection to server: ${this.wcOpts.wsURL}`;
+          errMsg = `Connection to websocket server is refused. wsURL: "${this.wsURL}"`;
         } else {
           this.wcOpts.reconnectAttempts = 0; // do not reconnect
           this.disconnect();
