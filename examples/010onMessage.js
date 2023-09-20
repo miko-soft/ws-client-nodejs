@@ -15,7 +15,6 @@ class TestClient extends WsClientNodejs {
 const main = async () => {
   // connect to websocket server
   const wcOpts = {
-    wsURL: 'ws://localhost:3211?authkey=TRTmrt',
     questionTimeout: 3 * 1000,
     reconnectAttempts: 5, // try to reconnect 5 times
     reconnectDelay: 3000, // delay between reconnections is 3 seconds
@@ -24,7 +23,7 @@ const main = async () => {
     debug_DataParser: false
   };
   const testClient = new TestClient(wcOpts);
-  const socket = await testClient.connect();
+  const socket = await testClient.connect('ws://localhost:3211?authkey=TRTmrt');
 
   console.log('Listenning for messages from the server...');
 

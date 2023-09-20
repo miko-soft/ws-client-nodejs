@@ -65,7 +65,6 @@ class TestClient extends WsClientNodejs {
 
 
 const wcOpts = {
-  wsURL: 'ws://localhost:3211?authkey=TRTmrt',
   questionTimeout: 3 * 1000, // wait 3 secs for answer
   reconnectAttempts: 5, // try to reconnect 5 times
   reconnectDelay: 6000, // delay between reconnections is 6 seconds
@@ -73,7 +72,7 @@ const wcOpts = {
   debug: false
 };
 const testClient = new TestClient(wcOpts);
-testClient.connect();
+testClient.connect('ws://localhost:3211?authkey=TRTmrt');
 
 
 testClient.on('message', (msg, msgSTR, msgBUF) => {

@@ -7,6 +7,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@mikosoft/router": "^1.0.0"
+    "@mikosoft/router": "^1.0.1"
   }
 }
