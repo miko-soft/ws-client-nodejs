@@ -4,7 +4,7 @@
  * - subprotocols: raw, jsonRWS
  */
 const http = require('http');
-const urlNode = require('url');
+const { URL } = require('url');
 const crypto = require('crypto');
 const { EventEmitter } = require('events');
 const package_json = require('../package.json');
@@ -60,17 +60,18 @@ class WsClientNodejs13 extends DataParser {
   connect(wsURL) {
     if (!wsURL || !/^wss?:\/\//.test(wsURL)) { throw new Error('Bad websocket URL'); }
     this.wsURL = wsURL; // used in onEvents()
+    console.log('console.log(wsURL);', wsURL);
+
+    // generate socketID
+    this.socketID = helper.generateID();
 
     // http.request() options https://nodejs.org/api/http.html#http_http_request_url_options_callback
     const httpURL = wsURL.replace('wss://', 'https://').replace('ws://', 'http://');
-    const urlObj = new urlNode.URL(httpURL);
+    const urlObj = new URL(httpURL);
     const hostname = urlObj.hostname;
     const port = urlObj.port;
-    let path = !!urlObj.search ? urlObj.pathname + urlObj.search : urlObj.pathname; // /?authkey=TRTmrt
-
-    this.socketID = helper.generateID();
-    if (/\?[a-zA-Z0-9]/.test(path)) { path += `&socketID=${this.socketID}`; }
-    else { path += `socketID=${this.socketID}`; }
+    urlObj.searchParams.set('socketID', this.socketID);
+    const path = !!urlObj.search ? urlObj.pathname + urlObj.search : urlObj.pathname; // /?authkey=TRTmrt
 
     // create hash
     const GUID = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11'; // Globally Unique Identifier (GUID)
@@ -98,6 +99,7 @@ class WsClientNodejs13 extends DataParser {
       },
       timeout
     };
+    this._debugger('Connecting with options:', JSON.stringify(requestOpts, null, 2));
     this.clientRequest = http.request(requestOpts);
     this.clientRequest.on('error', err => { console.log(err.message.cliBoja('red')); });
     this.clientRequest.end();
@@ -186,6 +188,7 @@ class WsClientNodejs13 extends DataParser {
    */
   onEvents() {
     this.clientRequest.on('socket', socket => {
+
       socket.on('connect', () => {
         console.log(`WS Connection opened`.cliBoja('blue'));
         this.attempt = 1;
