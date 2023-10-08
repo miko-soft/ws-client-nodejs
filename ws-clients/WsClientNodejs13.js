@@ -60,7 +60,6 @@ class WsClientNodejs13 extends DataParser {
   connect(wsURL) {
     if (!wsURL || !/^wss?:\/\//.test(wsURL)) { throw new Error('Bad websocket URL'); }
     this.wsURL = wsURL; // used in onEvents()
-    console.log('console.log(wsURL);', wsURL);
 
     // generate socketID
     this.socketID = helper.generateID();
